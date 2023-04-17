@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShavaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ZakazShava" Relationship="Self.FK_ZakazShava_Color" FromRole="Color" ToRole="ZakazShava" />
+  </EntityType>
+  <EntityType Name="CompositionOfSupply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZakazShavaId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="ZakazShava" Relationship="Self.FK_CompositionOfSupply_ZakazShava" FromRole="CompositionOfSupply" ToRole="ZakazShava" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Employee_User" FromRole="Employee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZakazShavaId" Type="Int32" />
+    <Property Name="quanity" Type="Int32" />
+    <NavigationProperty Name="ZakazShava" Relationship="Self.FK_Stock_ZakazShava" FromRole="Stock" ToRole="ZakazShava" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Discription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ZakazShava" Relationship="Self.FK_ZakazShava_Type" FromRole="Type" ToRole="ZakazShava" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_User" FromRole="User" ToRole="Employee" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="ZakazShava">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ColorId" Type="Int32" />
+    <NavigationProperty Name="Color" Relationship="Self.FK_ZakazShava_Color" FromRole="ZakazShava" ToRole="Color" />
+    <NavigationProperty Name="CompositionOfSupply" Relationship="Self.FK_CompositionOfSupply_ZakazShava" FromRole="ZakazShava" ToRole="CompositionOfSupply" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_ZakazShava" FromRole="ZakazShava" ToRole="Stock" />
+    <NavigationProperty Name="Type" Relationship="Self.FK_ZakazShava_Type" FromRole="ZakazShava" ToRole="Type" />
+  </EntityType>
+  <Association Name="FK_ZakazShava_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="ZakazShava" Type="Self.ZakazShava" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ZakazShava">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompositionOfSupply_ZakazShava">
+    <End Role="ZakazShava" Type="Self.ZakazShava" Multiplicity="0..1" />
+    <End Role="CompositionOfSupply" Type="Self.CompositionOfSupply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZakazShava">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompositionOfSupply">
+        <PropertyRef Name="ZakazShavaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_ZakazShava">
+    <End Role="ZakazShava" Type="Self.ZakazShava" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZakazShava">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ZakazShavaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZakazShava_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="ZakazShava" Type="Self.ZakazShava" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ZakazShava">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShavaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Color" EntityType="Self.Color" />
+    <EntitySet Name="CompositionOfSupply" EntityType="Self.CompositionOfSupply" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" />
+    <EntitySet Name="Type" EntityType="Self.Type" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="ZakazShava" EntityType="Self.ZakazShava" />
+    <AssociationSet Name="FK_ZakazShava_Color" Association="Self.FK_ZakazShava_Color">
+      <End Role="Color" EntitySet="Color" />
+      <End Role="ZakazShava" EntitySet="ZakazShava" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompositionOfSupply_ZakazShava" Association="Self.FK_CompositionOfSupply_ZakazShava">
+      <End Role="ZakazShava" EntitySet="ZakazShava" />
+      <End Role="CompositionOfSupply" EntitySet="CompositionOfSupply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_ZakazShava" Association="Self.FK_Stock_ZakazShava">
+      <End Role="ZakazShava" EntitySet="ZakazShava" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZakazShava_Type" Association="Self.FK_ZakazShava_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="ZakazShava" EntitySet="ZakazShava" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

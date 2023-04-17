@@ -1,0 +1,12 @@
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\User.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\User.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\MainWindow.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\Pages\AboutPage.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\Pages\EmployeePage.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\Pages\HomePage.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\Pages\LoginPage.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\Pages\RegPage.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\App.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\User_Content.g.cs
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\User_MarkupCompile.cache
+C:\Users\admin\source\repos\Showrma\User\obj\Debug\User_MarkupCompile.lref

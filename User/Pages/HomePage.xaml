@@ -1,0 +1,53 @@
+﻿<Page x:Class="User.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:User.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  FontWeight="ExtraBold" FontSize="12">Поиск</TextBlock>
+                    <TextBox x:Name="SelectedTb" TextChanged="SelectedTb_TextChanged" Width="170"></TextBox>
+                    <ComboBox Margin="5 0 0  0" x:Name="ColoreCb" SelectionChanged="TypeCb_SelectionChanged"   SelectedItem="{Binding Color}" DisplayMemberPath="Name" Width="150"></ComboBox>
+                    <ComboBox Margin="5 0 0  0" x:Name="ViewCb" SelectionChanged="TypeCb_SelectionChanged"   SelectedItem="{Binding View}" DisplayMemberPath="Name" Width="150"></ComboBox>
+                </StackPanel>
+            </StackPanel>
+            <ListView Background="Gray" Height="330" Width="600"  Margin="0 30 0  0" x:Name="LvAccept">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Image Width="150" Height=" 150" Source="{Binding Img}"></Image>
+                            </StackPanel>
+                            <StackPanel Width="180" Margin="10 0 0 0 " VerticalAlignment="Center">
+                                <TextBlock Margin="20 0 0 0" FontSize="14" Foreground="White" Text="{Binding Name, StringFormat= ' {0}.'}"/>
+                                <TextBlock Margin="20 0 0 0" FontSize="14" Foreground="White" Text="{Binding Color.Name, StringFormat= 'Лаваш: {0}.'}"/>
+                                <TextBlock Margin="20 0 0 0" FontSize="14" Foreground="White" Text="{Binding Type.Name, StringFormat= 'Начинка: {0}.'}"/>
+                                <TextBlock Margin="20 0 0 0" FontSize="14" Foreground="White" Text="{Binding Price, StringFormat= 'Цена {0} руб.'}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+        <StackPanel Height="400"  Grid.Column="0" HorizontalAlignment="Center" Margin="0 60 0 20 ">
+            <Button x:Name="AboutBTN" Click="AboutBTN_OnClick" Content="О нас"></Button>
+            
+            <Button Margin="0 20 0 0 "  FontSize="12" x:Name="ZakazBtn" Background="#E9E9E9" Click="ZakazBtn_OnClickAddPenBt_Click" Height="40" Width="142">Оформить заказ</Button>
+            <Button  Margin="0 20 0 0 "  FontSize="12" x:Name="DellBt" Background="#E9E9E9" Click="DellBt_Click_1" Height="40" Width="142">Удалить</Button>
+            <Button  Margin="0 20 0 0 "  FontSize="12" x:Name="ProfilBt" Background="#E9E9E9" Click="ProfilBt_Click" Height="40" Width="142">Выйти</Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ee71bbfdbac4c4583331705a2267040" Name="Diagram1">
+        <EntityTypeShape EntityType="ShavaModel.Color" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.CompositionOfSupply" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.Employee" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.Role" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.Stock" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.Type" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.User" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShavaModel.ZakazShava" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="ShavaModel.FK_ZakazShava_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="ShavaModel.FK_CompositionOfSupply_ZakazShava" ManuallyRouted="false" />
+        <AssociationConnector Association="ShavaModel.FK_Employee_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="ShavaModel.FK_Employee_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShavaModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="ShavaModel.FK_Stock_ZakazShava" ManuallyRouted="false" />
+        <AssociationConnector Association="ShavaModel.FK_ZakazShava_Type" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
